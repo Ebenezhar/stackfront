@@ -1,6 +1,10 @@
 import React from 'react'
+import { useFormik } from 'formik'
 
 function Verification() {
+    let formik = useFormik({
+
+    })
   return (
     <div className="container">
             <div className="row justify-content-center">
@@ -16,8 +20,8 @@ function Verification() {
                                                 type={"text"}
                                                 className="form-control form-control-user mb-2"
                                                 name={'email'}
-                                                value={formik.values.email}
-                                                onChange={formik.handleChange}
+                                                // value={formik.values.email}
+                                                // onChange={formik.handleChange}
                                                 placeholder="Enter your Email Address..."
                                             />
                                             {

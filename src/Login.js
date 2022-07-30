@@ -17,7 +17,7 @@ function Login() {
                     let login = await axios.post(`${config.api}/login`, values);
                     if (login.data.token) {
                         localStorage.setItem('react_token', login.data.token);
-                        navigate('/ForgetPassword');
+                        navigate('/Portal/Dashboard');
                     } else {
                         alert(login.data.message);
                     }
