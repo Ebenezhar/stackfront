@@ -1,27 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AnswerCard from './AnswerCard';
 import { useFormik } from 'formik'
 import axios from 'axios';
 import { config } from './config';
 import { useParams } from 'react-router-dom';
+import UserContext from './UserContext';
 
 function Answers() {
     let quesid = useParams();
-
-    const [answers, setanswers] = useState([])
-    const [question,setquestion] = useState([])
+    const userContextData = useContext(UserContext);
+    
     useEffect(() => {
         fetchData1();
-        fetchData2();
+        //fetchData2();
     }, [])
     
     let fetchData1 = async () => {
         let userData = await axios.get(`${config.api}/answers/${quesid.id}`);
-        setanswers(userData.data);
+        userContextData.setanswers(userData.data);
+
     }
     let fetchData2 = async () => {
         let userData = await axios.get(`${config.api}/question/${quesid.id}`);
-        setquestion(userData.data);
+        userContextData.setquestion(userData.data);
     }
 
     const formik = useFormik(
@@ -58,21 +59,15 @@ function Answers() {
 
     return (
         <div className=" align-items-start flex-row">
-            <h3>Question: {question.question}</h3>
+            {/* <h3>Question: {question.question}</h3> */}
             <h5>Answers</h5>
             <div className="card">
                 <ul className="list-group">
                     {
-                        answers.map((answer) => {
+                        userContextData.answers.map((answer) => {
                             return (<AnswerCard data={answer} />)
                         })
                     }
-                    {/* <li >
-                        <AnswerCard />
-                    </li>
-                    <li >
-                        <AnswerCard />
-                    </li> */}
                 </ul>
             </div>
             <form onSubmit={formik.handleSubmit} >

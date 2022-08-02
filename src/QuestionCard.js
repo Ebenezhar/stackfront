@@ -4,7 +4,7 @@ import axios from 'axios';
 import { config } from './config';
 
 function QuestionCard({data}) {
-    const [len,setlen] = useState()
+    const [len,setlen] = useState();
     let navigate = useNavigate();
     useEffect(() => {
         fetchData();
@@ -12,7 +12,6 @@ function QuestionCard({data}) {
     let fetchData = async () => {
         let userData = await axios.get(`${config.api}/answers/${data._id}`);
         setlen(userData.data.length);
-        //console.log("Len",userData.data.length);
     }
     const handleView = async (data) => {
         data.view = data.view + 1;

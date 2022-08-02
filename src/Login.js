@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { config } from './config';
+import UserContext from './UserContext';
 
 function Login() {
     let navigate = useNavigate();
+    const userContextData = useContext(UserContext);
     const formik = useFormik(
         {
             initialValues: {
@@ -17,6 +19,8 @@ function Login() {
                     let login = await axios.post(`${config.api}/login`, values);
                     if (login.data.token) {
                         localStorage.setItem('react_token', login.data.token);
+                        localStorage.setItem('UserName', login.data.name);
+                        userContextData.setLoginPerson(login.data.name)
                         navigate('/Portal/Dashboard');
                     } else {
                         alert(login.data.message);

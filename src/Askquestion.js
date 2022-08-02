@@ -10,9 +10,20 @@ function Askquestion() {
         topic: '',
         question: '',
       },
+      validate: (values) => {
+        let errors = {};
+        if (!values.topic) { errors.topic = 'Topic required' }
+
+        if (!values.question) {
+          errors.question = 'Please enter the question';
+        } else if (values.question.length < 5) {
+          errors.question = 'Length should be more than 5 Characters';
+          return errors;
+        }
+      },
       onSubmit: async (values) => {
         try {
-          const question = await axios.post(`${config.api}/Askquestion`, values,{
+          const question = await axios.post(`${config.api}/Askquestion`, values, {
             headers: {
               'Authorization': `${localStorage.getItem('react_token')}`
             }
@@ -32,12 +43,15 @@ function Askquestion() {
           <div className='col-lg-12 m-5'>
             <input
               type={"text"}
-              className="form-control form-control-user mb-2"
               name={'topic'}
               value={formik.values.topic}
               onChange={formik.handleChange}
               placeholder="Enter topic"
+              className={`form-control ${formik.errors.topic ? 'error-border' : ''} `}
             />
+            {
+              formik.errors.topic ? <span style={{ color: 'red' }}> {formik.errors.topic}</span> : null
+            }
           </div>
           <div className='col-lg-12 m-5'>
             <textarea
@@ -49,6 +63,9 @@ function Askquestion() {
               value={formik.values.question}
               placeholder="Enter your Question..."
             />
+             {
+              formik.errors.question ? <span style={{ color: 'red' }}> {formik.errors.question}</span> : null
+            }
           </div>
           <div className='col-lg-12 m-5'>
             <button
