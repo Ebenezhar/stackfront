@@ -14,15 +14,16 @@ function ForgetPassword() {
             console.log(values);
             try {
                 let mail = await axios.post(`${config.api}/sendmail`, values);
-                console.log(mail.data.message);
+                console.log(mail.data);
                 if (mail.data) {
-                    alert("user found");
-                    // navigate('/ResetPassword');
+                    alert(`${mail.data.message}`);
+                    navigate('/ResetPassword');
                 } else {
                     alert(mail.data.message);
                 }
-
             } catch (error) {
+                alert(`${error.response.data.message}`);
+                console.log(error.response.data.message);
                 console.log(error);
             }
         }

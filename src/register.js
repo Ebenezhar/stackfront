@@ -1,11 +1,19 @@
 import axios from 'axios'
 import { useFormik } from 'formik'
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { actionCreators } from './action-creator';
 import { config } from './config';
+import {bindActionCreators} from 'redux';
 
 
 function Register() {
+    const account = useSelector(state => state.account);
+    
+    const dispatch = useDispatch();
+    // const { registerAccount } = bindActionCreators(actionCreators, dispatch);
+    // registerAccount(values);
     const formik = useFormik(
         {
             initialValues: {
@@ -56,14 +64,14 @@ function Register() {
                 }
                 return errors
             },
-              onSubmit: async (values) => {
+            onSubmit: async (values) => {
                 try {
-                  const register = await axios.post(`${config.api}/register`, values);
-                  alert(register.data.message);
+                    const register = await axios.post(`${config.api}/register`, values);
+                    alert(register.data.message);
                 } catch (error) {
-                  console.log(error);
+                    console.log(error);
                 }
-              }
+            }
         }
     )
     return (
@@ -71,7 +79,6 @@ function Register() {
             <div className="text-center">
                 <h1 className="h4 text-gray-900 mb-4">Register here</h1>
             </div>
-
             <form onSubmit={formik.handleSubmit}>
                 <div className='row'>
                     <div className='col-lg-6'>
@@ -99,7 +106,7 @@ function Register() {
                                 onChange={formik.handleChange}
                                 placeholder="Enter Email Address..."
                             />
-                             {
+                            {
                                 formik.errors.email ? <span style={{ color: 'red' }}> {formik.errors.email}</span> : null
                             }
                         </div>

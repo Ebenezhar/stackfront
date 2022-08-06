@@ -11,20 +11,15 @@ function Answers() {
     const userContextData = useContext(UserContext);
     
     useEffect(() => {
-        fetchData1();
-        //fetchData2();
+        fetchData();
     }, [])
     
-    let fetchData1 = async () => {
+    let fetchData = async () => {
         let userData = await axios.get(`${config.api}/answers/${quesid.id}`);
         userContextData.setanswers(userData.data);
 
     }
-    let fetchData2 = async () => {
-        let userData = await axios.get(`${config.api}/question/${quesid.id}`);
-        userContextData.setquestion(userData.data);
-    }
-
+   
     const formik = useFormik(
         {
             initialValues: {
@@ -36,9 +31,7 @@ function Answers() {
                     errors.answer = 'Please enter the answer';
                 } else if (values.answer.length < 5) {
                     errors.answer = 'Answer should be more than 5 Characters';
-                } else if (values.answer.length > 20) {
-                    errors.answer = 'Answer should be less than 20 Characters';
-                }
+                } 
                 return errors;
             },
             onSubmit: async (values) => {

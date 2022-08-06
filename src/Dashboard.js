@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import QuestionCard from './QuestionCard'
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { config } from './config';
+import UserContext from './UserContext';
 
 function Dashboard() {
-    const [questions, setquestions] = useState([])
+    let userContextData = useContext(UserContext);
     useEffect(() => {
         fetchData();
     }, [])
     let fetchData = async () => {
         let userData = await axios.get(`${config.api}/questions`);
-        setquestions(userData.data);
+        userContextData.setquestions(userData.data);
     }
     return (
         <>
@@ -22,7 +23,7 @@ function Dashboard() {
             <ul className="list-group">
                 <li>
                     {
-                        questions.map((question) => {
+                        userContextData.questions.map((question) => {
                             return (<QuestionCard data={question} />)
                         })
                     }

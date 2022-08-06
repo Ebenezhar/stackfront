@@ -7,6 +7,7 @@ import {
 function Portal() {
 
   return (
+    
     <div className="col-lg-12">
       <Navbar />
       <div className="container-fluid">

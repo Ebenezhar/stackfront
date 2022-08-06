@@ -1,5 +1,5 @@
 export const config = {
-    api:"https://stackoverflowcln.herokuapp.com",
+    api:"http://localhost:3001",
 } 
 
 //http://localhost:3001
