@@ -43,7 +43,9 @@ function Login() {
                         <div className="card-body p-0">
                             {/* Nested Row within Card Body */}
                             <div className="row">
-                                <div className="col-lg-6 d-none d-lg-block bg-login-image" />
+                                <div className="col-lg-6 d-none d-lg-block bg-login-image">
+                                    <img class="card-img-top" src="https://st.depositphotos.com/1002927/2316/i/450/depositphotos_23169756-stock-photo-questions-idea.jpg" alt="Card image cap" />
+                                </div>
                                 <div className="col-lg-6">
                                     <div className="p-5">
                                         <div className="text-center">
@@ -112,8 +114,9 @@ function Login() {
                                                 Forget Password...!
                                             </Link>
                                             <Link to='/register'>
-                                                Create an Account...!
+                                                Create an Account...! 
                                             </Link>
+                                            
                                         </div>
 
                                     </div>

@@ -1,6 +1,4 @@
 
-
-
 export const registerAccount = (person) => {
     return (dispatch) => {
        dispatch({
