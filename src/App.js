@@ -10,6 +10,7 @@ import Answers from './Answers';
 import ForgetPassword from './ForgetPassword';
 import Verification from './Verification';
 import { UserProvider } from './UserContext';
+import ChangePassword from './ChangePassword';
 
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
           <Route path='/' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/ForgetPassword' element={<ForgetPassword />} />
-          <Route path='/ResetPassword' element={<Verification />} />
+          <Route path='/Verification' element={<Verification />} />
+          <Route path='/ChangePassword' element={<ChangePassword />} />
           <Route path='/Portal' element={<Portal />}>
             <Route path="Dashboard" element={<Dashboard />} />
             <Route path="Profile" element={<Profile />} />

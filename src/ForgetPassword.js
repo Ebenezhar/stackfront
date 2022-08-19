@@ -1,30 +1,31 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useFormik } from 'formik'
 import axios from 'axios';
 import { config } from './config';
 import { useNavigate } from "react-router-dom";
+import UserContext from './UserContext';
 
 function ForgetPassword() {
     let navigate = useNavigate();
+    const userContextData = useContext(UserContext);
+
     const formik = useFormik({
         initialValues: {
             email: '',
         },
         onSubmit: async (values) => {
             console.log(values);
+            userContextData.setmailid(values.email);            
             try {
                 let mail = await axios.post(`${config.api}/sendmail`, values);
-                console.log(mail.data);
                 if (mail.data) {
                     alert(`${mail.data.message}`);
-                    navigate('/ResetPassword');
+                    navigate('/Verification');
                 } else {
                     alert(mail.data.message);
                 }
             } catch (error) {
                 alert(`${error.response.data.message}`);
-                console.log(error.response.data.message);
-                console.log(error);
             }
         }
 

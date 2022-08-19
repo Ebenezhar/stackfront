@@ -72,7 +72,7 @@ function Login() {
                                                     placeholder="Password"
                                                 />
                                             </div>
-                                            <div className="form-group">
+                                            {/* <div className="form-group">
                                                 <div className="custom-control custom-checkbox small">
                                                     <input
                                                         type="checkbox"
@@ -86,7 +86,7 @@ function Login() {
                                                         Remember Me
                                                     </label>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             <button
                                                 type={"submit"}
                                                 className="btn btn-primary mt-2"
@@ -114,7 +114,7 @@ function Login() {
                                                 Forget Password...!
                                             </Link>
                                             <Link to='/register'>
-                                                Create an Account...! 
+                                                Create an Account...! 👈
                                             </Link>
                                             
                                         </div>

@@ -1,28 +1,27 @@
 import axios from 'axios'
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { actionCreators } from './action-creator';
 import { config } from './config';
 import {bindActionCreators} from 'redux';
+import UserContext from './UserContext';
 
 
 function Register() {
-    const account = useSelector(state => state.account);
     let navigate = useNavigate();
-    
-    const dispatch = useDispatch();
-    // const { registerAccount } = bindActionCreators(actionCreators, dispatch);
-    // registerAccount(values);
+    const userContextData = useContext(UserContext);
+    let input = userContextData.forgotUser;
+    // console.log(input);
     const formik = useFormik(
         {
             initialValues: {
-                username: '',
-                email: '',
-                location: '',
-                aboutme: '',
-                profession: '',
+                username: `${input.username}`,
+                email: `${input.email}`,
+                location: `${input.location}`,
+                aboutme: `${input.aboutme}`,
+                profession: `${input.profession}`,
                 password1: '',
                 password2: '',
             },
@@ -67,7 +66,7 @@ function Register() {
             },
             onSubmit: async (values) => {
                 try {
-                    const register = await axios.post(`${config.api}/register`, values);
+                    const register = await axios.post(`${config.api}/changepassword/${input.email}`, values);
                     alert(register.data.message);
                     navigate('/')
                 } catch (error) {
@@ -79,18 +78,18 @@ function Register() {
     return (
         <div className="container">
             <div className="text-center">
-                <h1 className="h4 text-gray-900 mb-4">Register here</h1>
+                <h1 className="h4 text-gray-900 mb-4">Reset Your Password </h1>
             </div>
             <form onSubmit={formik.handleSubmit}>
                 <div className='row'>
                     <div className='col-lg-6'>
                         <div className="form-group">
                             <input
-                                type={"text"}
+                                // type={"text"}
                                 className="form-control form-control-user mb-2"
-                                name={'username'}
-                                value={formik.values.username}
-                                onChange={formik.handleChange}
+                                // name={'username'}
+                                 value={formik.values.username}
+                                // onChange={formik.handleChange}
                                 placeholder="Enter your name"
                             />
                             {
@@ -101,11 +100,11 @@ function Register() {
                     <div className='col-lg-6'>
                         <div className="form-group">
                             <input
-                                type={"text"}
+                                // type={"text"}
                                 className="form-control form-control-user mb-2"
-                                name={'email'}
+                                // name={'email'}
                                 value={formik.values.email}
-                                onChange={formik.handleChange}
+                                // onChange={formik.handleChange}
                                 placeholder="Enter Email Address..."
                             />
                             {
@@ -116,11 +115,11 @@ function Register() {
                     <div className="col-lg-6">
                         <div className="form-group">
                             <input
-                                type={"text"}
+                                // type={"text"}
                                 className="form-control form-control-user"
-                                name={'imageurl'}
+                                // name={'imageurl'}
                                 // onChange={formik.handleChange}
-                                // value={formik.values.imageurl}
+                                 value={formik.values.imageurl}
                                 placeholder="Enter image url"
                             />
                         </div>
@@ -128,10 +127,10 @@ function Register() {
                     <div className="col-lg-6 mt-2">
                         <div className="form-group">
                             <input
-                                type={"text"}
-                                className="form-control form-control-user"
-                                name={'location'}
-                                onChange={formik.handleChange}
+                                // type={"text"}
+                                 className="form-control form-control-user"
+                                // name={'location'}
+                                // onChange={formik.handleChange}
                                 value={formik.values.location}
                                 placeholder="Enter your Location"
                             />
@@ -143,11 +142,11 @@ function Register() {
                     <div className="col-lg-6 mt-2">
                         <div className="form-group">
                             <textarea
-                                type={"text"}
-                                rows={"2"} cols={"50"}
+                                // type={"text"}
+                                // rows={"2"} cols={"50"}
                                 className="form-control form-control-user"
-                                name={'aboutme'}
-                                onChange={formik.handleChange}
+                                // name={'aboutme'}
+                                // onChange={formik.handleChange}
                                 value={formik.values.aboutme}
                                 placeholder="Tell us about yourself..."
                             />
@@ -160,10 +159,10 @@ function Register() {
                     <div className="col-lg-6 mt-2">
                         <div className="form-group">
                             <input
-                                type={"text"}
+                                // type={"text"}
                                 className="form-control form-control-user"
-                                name={'profession'}
-                                onChange={formik.handleChange}
+                                // name={'profession'}
+                                // onChange={formik.handleChange}
                                 value={formik.values.profession}
                                 placeholder="Enter your profession"
                             />
@@ -209,12 +208,10 @@ function Register() {
                             type={"submit"}
                             className="btn btn-primary btn-user btn-block m-2"
                         >
-                            Register
+                            Reset Password
                         </button>
                     </div>
-                    <Link to='/'>
-                        Already have account
-                    </Link>
+                    
 
                 </div>
             </form>
