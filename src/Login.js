@@ -19,13 +19,12 @@ function Login() {
                     let login = await axios.post(`${config.api}/login`, values);
                     if (login.data.token) {
                         localStorage.setItem('react_token', login.data.token);
-                        localStorage.setItem('UserName', login.data.name);
+                        localStorage.setItem('userName', login.data.name);
                         userContextData.setLoginPerson(login.data.name)
                         navigate('/Portal/Dashboard');
                     } else {
                         alert(login.data.message);
                     }
-
                 } catch (error) {
                     console.log(error);
                 }
@@ -35,7 +34,7 @@ function Login() {
     return (
         <div className="container">
             {/* Hello world */}
-            ;
+
             {/* Outer Row */}
             <div className="row justify-content-center">
                 <div className="col-xl-10 col-lg-12 col-md-9">
@@ -116,7 +115,7 @@ function Login() {
                                             <Link to='/register'>
                                                 Create an Account...! 👈
                                             </Link>
-                                            
+
                                         </div>
 
                                     </div>

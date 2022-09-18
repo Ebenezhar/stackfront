@@ -10,30 +10,29 @@ function Verification() {
     const userContextData = useContext(UserContext);
     let mail = userContextData.mailid;
     let formik = useFormik({
-        initialValues : {
-            email:`${mail}`,
+        initialValues: {
+            email: `${mail}`,
             vercode: '',
         },
-        validate : (values) => {
+        validate: (values) => {
             let errors = {};
-            if(!values.vercode) {
+            if (!values.vercode) {
                 errors.vercode = "Please enter the validation code";
             }
             return errors;
         },
-        onSubmit: async(values) => {
+        onSubmit: async (values) => {
             console.log(values);
             try {
                 const res = await axios.post(`${config.api}/verify`, values);
                 userContextData.setforgotUser(res.data);
                 console.log(res.data);
-                if(res.data){
+                if (res.data) {
                     alert("Verified ✅");
                     navigate('/ChangePassword');
                 }
-                else{
-                    console.log(res.data.message);
-                    alert(res.data.message); 
+                else {
+                    alert(res.data.message);
                 }
             } catch (error) {
                 console.log(error);
@@ -49,7 +48,7 @@ function Verification() {
                         <h5 className="text-justify mb-3">Enter your Verification Code</h5>
                         <div className="col">
                             <h6 className='pb-3 pt-3'>Mailid: {mail}</h6>
-                            <form onSubmit={formik.handleSubmit}>                               
+                            <form onSubmit={formik.handleSubmit}>
                                 <div className="col-lg-10 d-flex justify-content-between">
                                     <div className="row">
                                         <div className="form-group col-lg-10">
