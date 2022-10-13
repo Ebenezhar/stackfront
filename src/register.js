@@ -5,16 +5,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { actionCreators } from './action-creator';
 import { config } from './config';
-import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 
 
 function Register() {
-    const account = useSelector(state => state.account);
     let navigate = useNavigate();
-    
-    const dispatch = useDispatch();
-    // const { registerAccount } = bindActionCreators(actionCreators, dispatch);
-    // registerAccount(values);
+
+
     const formik = useFormik(
         {
             initialValues: {
@@ -175,7 +172,7 @@ function Register() {
                     <div className="col-lg-6 mt-2">
                         <div className="form-group">
                             <input
-                                type={"text"}
+                                type={"password"}
                                 className="form-control form-control-user"
                                 name={'password1'}
                                 onChange={formik.handleChange}
@@ -190,13 +187,16 @@ function Register() {
                     <div className="col-lg-6 mt-2">
                         <div className="form-group">
                             <input
-                                type={"text"}
+                                type={"password"}
                                 className="form-control form-control-user"
                                 name={'password2'}
                                 onChange={formik.handleChange}
                                 value={formik.values.password2}
                                 placeholder="Confirm Password"
-                            />
+
+                            ></input>
+
+
                             {
                                 formik.errors.password2 ? <span style={{ color: 'red' }}> {formik.errors.password2}</span> : null
                             }
@@ -215,12 +215,8 @@ function Register() {
                     <Link to='/'>
                         Already have account
                     </Link>
-
                 </div>
             </form>
-
-
-
         </div>
 
     )

@@ -52,6 +52,7 @@ function Login() {
                                         </div>
                                         <form onSubmit={formik.handleSubmit} className="user">
                                             <div className="form-group">
+                                                <label className='p-1 text-muted'>User Name</label>
                                                 <input
                                                     type={"text"}
                                                     className="form-control form-control-user mb-2"
@@ -62,13 +63,14 @@ function Login() {
                                                 />
                                             </div>
                                             <div className="form-group">
+                                                <label className='p-1 text-muted'>Password</label>
                                                 <input
                                                     type={"password"}
                                                     className="form-control form-control-user"
                                                     name={'password'}
                                                     onChange={formik.handleChange}
                                                     value={formik.values.password}
-                                                    placeholder="Password"
+                                                    placeholder="Enter Password..."
                                                 />
                                             </div>
                                             {/* <div className="form-group">
@@ -93,7 +95,7 @@ function Login() {
                                                 Login
                                             </button>
                                             <hr />
-                                            <a
+                                            {/* <a
                                                 href="index.html"
                                                 className="btn btn-google btn-user btn-block"
                                             >
@@ -105,9 +107,8 @@ function Login() {
                                             >
                                                 <i className="fab fa-facebook-f fa-fw" /> Login with
                                                 Facebook
-                                            </a>
+                                            </a> */}
                                         </form>
-                                        <hr />
                                         <div className="row">
                                             <Link to='/ForgetPassword'>
                                                 Forget Password...!
