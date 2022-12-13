@@ -1,5 +1,5 @@
 export const config = {
-    api: "https://stackserver-53ys.vercel.app",
+    api: "https://stackserver.vercel.app",
 }
 
 //http://localhost:3001
