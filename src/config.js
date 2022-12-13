@@ -1,7 +1,5 @@
 export const config = {
-    api:"https://stackoverflowcln.herokuapp.com",
-} 
+    api: "https://doctor-server-cyan.vercel.app",
+}
 
 //http://localhost:3001
-
-//https://stackoverflowcln.herokuapp.com
